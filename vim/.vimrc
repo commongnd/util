@@ -38,6 +38,9 @@ let g:airline_theme='simple'
 set laststatus=2
 let g:airline_powerline_fonts = 1
 
+" For CtrlP to set the scope to current working directory for searches
+let g:ctrlp_cmd='CtrlP :pwd'
+
 " Show spaces
 ":set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 set listchars=eol:↲,tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
