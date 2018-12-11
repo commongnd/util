@@ -64,3 +64,6 @@ if &diff
    map <leader>3 :diffget REMOTE<CR>
    map <leader>. :diffupdate<CR>
 endif
+
+" For NERDTree
+map <C-n> :NERDTreeToggle<CR>
