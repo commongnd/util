@@ -22,6 +22,10 @@ nmap ,t :FufTaggedFile<CR>
 " For CScope
 set nocscopeverbose
 map <F5> :!cscope -bR<CR>:cs reset<CR><CR>
+
+" Convert Windows file to Unix file
+map <F8> :!dos2unix %<CR>:e<CR>
+
 " Use F11 for adding database for the first time. Note: it uses cs kill & add
 " instead of reset since reloading of the database doesn't seem to work
 " properly with the reset command
