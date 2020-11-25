@@ -8,7 +8,16 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 " Display line number
-set number
+set number relativenumber
+
+augroup numbertoggle
+autocmd!
+autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+map <C-l> :set invrelativenumber<CR>
+
 " Runtime path manipulation using pathogen
 execute pathogen#infect()
 
@@ -18,6 +27,7 @@ imap jj <Esc>
 nmap ,f :FufFileWithCurrentBufferDir<CR>
 nmap ,b :FufBuffer<CR>
 nmap ,t :FufTaggedFile<CR>
+xnoremap p pgvy
 
 " For CScope
 set nocscopeverbose
@@ -47,6 +57,10 @@ let g:airline_powerline_fonts = 1
 " For CtrlP to set the scope to current working directory for searches
 let g:ctrlp_cmd='CtrlP :pwd'
 
+" Load termdebug plugin to run GDB inside of Vim
+" Enter ':Termdebug [executable]' to run it
+:packadd termdebug
+
 " Show spaces
 ":set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
 set listchars=eol:↲,tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·
@@ -71,3 +85,13 @@ endif
 
 " For NERDTree
 map <C-n> :NERDTreeToggle<CR>
+
+" Set Syntastic to passive mode (Run :SyntasticCheck manually)
+let g:syntastic_mode_map = {
+    \ "mode" : "passive",
+    \ "active_filetypes": [],
+    \ "passive_filetypes": ["c", "cpp"] }
+
+" Open terminal below all splits
+cabbrev bterm bo term
+set termwinsize=40x0
